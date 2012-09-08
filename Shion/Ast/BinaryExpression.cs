@@ -32,44 +32,44 @@ namespace Shion.Ast
             return sb.ToString();
         }
 
-        public dynamic Invoke(Scope context)
+        public dynamic Invoke(Scope scope)
         {
             switch (Operator)
             {
                 case "+":
-                    return ((IOperation)Left).Invoke(context) + ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) + ((IOperation)Right).Invoke(scope);
                 case "-":
-                    return ((IOperation)Left).Invoke(context) - ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) - ((IOperation)Right).Invoke(scope);
                 case "*":
-                    return ((IOperation)Left).Invoke(context) * ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) * ((IOperation)Right).Invoke(scope);
                 case "/":
-                    return ((IOperation)Left).Invoke(context) / ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) / ((IOperation)Right).Invoke(scope);
                 case ">":
-                    return ((IOperation)Left).Invoke(context) > ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) > ((IOperation)Right).Invoke(scope);
                 case "<":
-                    return ((IOperation)Left).Invoke(context) < ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) < ((IOperation)Right).Invoke(scope);
                 case ">=":
-                    return ((IOperation)Left).Invoke(context) >= ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) >= ((IOperation)Right).Invoke(scope);
                 case "<=":
-                    return ((IOperation)Left).Invoke(context) <= ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) <= ((IOperation)Right).Invoke(scope);
                 case "==":
-                    return ((IOperation)Left).Invoke(context).ToString() == ((IOperation)Right).Invoke(context).ToString();
+                    return ((IOperation)Left).Invoke(scope).ToString() == ((IOperation)Right).Invoke(scope).ToString();
                 case "===":
-                    return ((IOperation)Left).Invoke(context) == ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) == ((IOperation)Right).Invoke(scope);
                 case "!=":
-                    return ((IOperation)Left).Invoke(context).ToString() != ((IOperation)Right).Invoke(context).ToString();
+                    return ((IOperation)Left).Invoke(scope).ToString() != ((IOperation)Right).Invoke(scope).ToString();
                 case "!==":
-                    return ((IOperation)Left).Invoke(context) != ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) != ((IOperation)Right).Invoke(scope);
                 case "%":
-                    return ((IOperation)Left).Invoke(context) % ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) % ((IOperation)Right).Invoke(scope);
                 case "&":
-                    return ((IOperation)Left).Invoke(context) & ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) & ((IOperation)Right).Invoke(scope);
                 case "&&":
-                    return ((IOperation)Left).Invoke(context) && ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) && ((IOperation)Right).Invoke(scope);
                 case "|":
-                    return ((IOperation)Left).Invoke(context) | ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) | ((IOperation)Right).Invoke(scope);
                 case "||":
-                    return ((IOperation)Left).Invoke(context) || ((IOperation)Right).Invoke(context);
+                    return ((IOperation)Left).Invoke(scope) || ((IOperation)Right).Invoke(scope);
                 default:
                     throw new Exception("Invalid Oprator: " + Operator);
             }

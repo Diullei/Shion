@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -6,21 +7,32 @@ namespace Shion.Ast
 {
     public static class AstTree
     {
-        public static INode Factory(dynamic tree)
+        private static Dictionary<string, Type> _cache = new Dictionary<string, Type>();
+
+        private static void LoadCache()
         {
-            INode node = null;
+            if (_cache.Count > 0)
+                return;
+
             foreach (var type in Assembly.GetExecutingAssembly().GetTypes().ToList())
             {
                 var attr = type.GetAttribute<AstTypeAttribute>();
-                if(attr != null)
+                if (attr != null)
                 {
-                    if(attr.Identifier == tree.Type)
-                    {
-                        return ((INode)Activator.CreateInstance(type)).New(tree);
-                    }
+                    _cache[attr.Identifier] = type;
                 }
             }
+        }
 
+        public static INode Factory(dynamic tree)
+        {
+            LoadCache();
+
+            if (_cache.ContainsKey(tree.Type))
+            {
+                return ((INode)Activator.CreateInstance(_cache[tree.Type])).New(tree);
+            }
+            
             throw new Exception("Invalid " + tree.Type);
         }
     }

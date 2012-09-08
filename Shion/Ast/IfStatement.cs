@@ -20,14 +20,14 @@ namespace Shion.Ast
             return this;
         }
 
-        public dynamic Invoke(Scope context)
+        public dynamic Invoke(Scope scope)
         {
-            if(((IOperation)Test).Invoke(context))
+            if(((IOperation)Test).Invoke(scope))
             {
-                return ((IOperation) Consequent).Invoke(context);
+                return ((IOperation) Consequent).Invoke(scope);
             }
             
-            return Alternate != null ? ((IOperation)Alternate).Invoke(context) : null;
+            return Alternate != null ? ((IOperation)Alternate).Invoke(scope) : null;
         }
     }
 }

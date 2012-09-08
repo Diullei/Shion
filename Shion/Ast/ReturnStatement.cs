@@ -13,9 +13,9 @@ namespace Shion.Ast
             return this;
         }
 
-        public dynamic Invoke(Scope context)
+        public dynamic Invoke(Scope scope)
         {
-            return ((IOperation) Argument).Invoke(context);
+            return ((IOperation) Argument).Invoke(scope);
         }
     }
 }

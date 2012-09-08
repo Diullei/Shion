@@ -22,20 +22,20 @@ namespace Shion.Ast
             return sb.ToString();
         }
 
-        public dynamic Invoke(Scope context)
+        public dynamic Invoke(Scope scope)
         {
             object val = null;
-            if (context.Arguments.ContainsKey(Id))
+            if (scope.Arguments.ContainsKey(Id))
             {
-                val = context.Arguments[Id];
+                val = scope.Arguments[Id];
             }
-            if (context.VarSet.ContainsKey(Id))
+            if (scope.VarSet.ContainsKey(Id))
             {
-                val = context.VarSet[Id];
+                val = scope.VarSet[Id];
             }
-            else if (context.ThisSet.ContainsKey(Id))
+            else if (scope.ThisSet.ContainsKey(Id))
             {
-                val = context.ThisSet[Id];
+                val = scope.ThisSet[Id];
             }
 
             return Util.GetValue(val);

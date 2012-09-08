@@ -2,6 +2,6 @@
 {
     public interface IOperation
     {
-        dynamic Invoke(Scope context);
+        dynamic Invoke(Scope scope);
     }
 }

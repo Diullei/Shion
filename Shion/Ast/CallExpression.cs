@@ -24,21 +24,21 @@ namespace Shion.Ast
             return this;
         }
 
-        public dynamic Invoke(Scope context)
+        public dynamic Invoke(Scope scope)
         {
             if (Callee is MemberExpression)
             {
                 (Callee as MemberExpression).Arguments = Arguments;
-                return (Callee as MemberExpression).Invoke(context);
+                return (Callee as MemberExpression).Invoke(scope);
             } 
             else if(Callee is Identifier)
             {
                 if (((Identifier)Callee).Id == "toString")
                     return "[object Object]";
 
-                var fn = (FunctionDef)context.FunctionSet[((Identifier) Callee).Id];
+                var fn = (FunctionDef)scope.FunctionSet[((Identifier) Callee).Id];
                 fn.SetArgs(Arguments);
-                return fn.Invoke(context);
+                return fn.Invoke(scope);
             }
 
             throw new Exception("Invalid Call Expression");

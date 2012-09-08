@@ -61,7 +61,7 @@
     <Compile Include="Ast\TypeExtensions.cs" />
     <Compile Include="Ast\VariableDeclaration.cs" />
     <Compile Include="Ast\VariableDeclarator.cs" />
-    <Compile Include="Context.cs" />
+    <Compile Include="Scope.cs" />
     <Compile Include="FunctionDef.cs" />
     <Compile Include="JsContext.cs" />
     <Compile Include="Esprima.cs" />

@@ -20,13 +20,13 @@ namespace Shion.Ast
             return this;
         }
 
-        public dynamic Invoke(Scope context)
+        public dynamic Invoke(Scope scope)
         {
-            var obj = ((IOperation)Object).Invoke(context);
+            var obj = ((IOperation)Object).Invoke(scope);
             var args = new List<object>();
             foreach (var t in Arguments)
             {
-                args.Add(((IOperation)t).Invoke(context));
+                args.Add(((IOperation)t).Invoke(scope));
             }
             var prop = ((Identifier)Property).Id;
 

@@ -28,10 +28,10 @@ namespace Shion.Ast
 
         }
 
-        public dynamic Invoke(Scope context)
+        public dynamic Invoke(Scope scope)
         {
-            var init = ((IOperation)Init).Invoke(context);
-            context.VarSet.Add(((Identifier)Id).Id, init);
+            var init = ((IOperation)Init).Invoke(scope);
+            scope.VarSet.Add(((Identifier)Id).Id, init);
             return init;
         }
     }

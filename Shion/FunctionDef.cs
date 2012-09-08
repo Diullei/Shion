@@ -15,22 +15,22 @@ namespace Shion
             Arguments = arguments;
         }
 
-        public object Invoke(Scope context)
+        public object Invoke(Scope scope)
         {
             var index = 0;
             Arguments.ForEach(a =>
                                   {
                                       try
                                       {
-                                          context.Arguments[((Identifier)Params[index]).Id] = ((Literal)a).Value;
+                                          scope.Arguments[((Identifier)Params[index]).Id] = ((Literal)a).Value;
                                       }
                                       catch (Exception)
                                       {
-                                          context.Arguments[Guid.NewGuid().ToString()] = ((Literal)a).Value;
+                                          scope.Arguments[Guid.NewGuid().ToString()] = ((Literal)a).Value;
                                       }
                                       index++;
                                   });
-            return ((IOperation)Body).Invoke(context);
+            return ((IOperation)Body).Invoke(scope);
         }
     }
 }

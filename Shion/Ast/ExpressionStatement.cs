@@ -23,9 +23,9 @@ namespace Shion.Ast
             return sb.ToString();
         }
 
-        public dynamic Invoke(Scope context)
+        public dynamic Invoke(Scope scope)
         {
-            return ((IOperation) Expression).Invoke(context);
+            return ((IOperation) Expression).Invoke(scope);
         }
     }
 }

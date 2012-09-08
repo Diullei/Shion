@@ -24,17 +24,11 @@ namespace Shion.Ast
             return this;
         }
 
-        public dynamic Invoke(Scope context)
+        public dynamic Invoke(Scope scope)
         {
             //Params.ForEach(p => { context.ArgSet[((Identifier) p).Id] = null; });
-            context.FunctionSet[((Identifier)Id).Id] = new FunctionDef { Body = Body, Params = Params };
+            scope.FunctionSet[((Identifier)Id).Id] = new FunctionDef { Body = Body, Params = Params };
             return null;
         }
     }
-
-    //public class Function
-    //{
-    //    public INode Body { get; set; }
-    //    public List<INode> Params { get; set; }
-    //}
 }

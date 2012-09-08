@@ -25,7 +25,7 @@ namespace Shion.Ast
             return sb.ToString();
         }
 
-        public dynamic Invoke(Scope context)
+        public dynamic Invoke(Scope scope)
         {
             return Util.GetValue(Value);
         }

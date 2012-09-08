@@ -8,9 +8,9 @@
             return this;
         }
 
-        public dynamic Invoke(Scope context)
+        public dynamic Invoke(Scope scope)
         {
-            return context;
+            return scope;
         }
     }
 }

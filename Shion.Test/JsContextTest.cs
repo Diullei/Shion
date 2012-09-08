@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Shion.Test
@@ -11,6 +12,21 @@ namespace Shion.Test
             public void log(string value)
             {
                 Console.WriteLine(value);
+            }
+        }
+
+        public class EvalTest
+        {
+            private readonly JsContext _context;
+
+            public EvalTest(JsContext context)
+            {
+                _context = context;
+            }
+
+            public object eval(string code)
+            {
+                return _context.Run(code);
             }
         }
 
@@ -45,6 +61,27 @@ namespace Shion.Test
 
             context.Set("console", new ConsoleTest());
             context.Run("console.log('teste')");
+
+            //context.Set("$ERROR", );
+            context.Set("script", new EvalTest(context));
+            context.Run("function eval(code){ return script.eval(code); }");
+
+            var r = context.Run("eval('1+1')");
+
+            Assert.AreEqual(2, r);
         }
+
+        //Invalid left-hand side in assignment
+
+        [TestMethod]
+        public void Test1()
+        {
+            var code = "function print(msg){ console.log(msg) } print('teste');";
+
+            var context = new JsContext();
+            context.Set("console", new ConsoleTest());
+            var o = context.Run(code);
+        }
+
     }
 }

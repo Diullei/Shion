@@ -21,7 +21,7 @@ namespace Shion.Ast
                 }
             }
 
-            throw new Exception();
+            throw new Exception("Invalid " + tree.Type);
         }
     }
 }

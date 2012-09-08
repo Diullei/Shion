@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Shion.Ast
 {
@@ -28,7 +29,15 @@ namespace Shion.Ast
                 args.Add(((IOperation)t).Invoke(context));
             }
             var prop = ((Identifier)Property).Id;
-            return obj.GetType().GetMethod(prop).Invoke(obj, args.ToArray());
+
+            if (obj is Context)
+            {
+                if (prop == "toString")
+                    return "[object Object]";
+                throw new Exception();
+            }
+            else
+                return obj.GetType().GetMethod(prop).Invoke(obj, args.ToArray());
         }
     }
 }

@@ -1,0 +1,106 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="else" priority="0" />
+      <Item value="Callee" priority="1" />
+      <Item value="is" priority="0" />
+      <Item value="Identifier`0" priority="0" />
+      <Item value="context" priority="5" />
+      <Item value="Func" priority="0" />
+      <Item value="string" priority="0" />
+      <Item value="var" priority="1" />
+      <Item value="FileStyleUriParser`0" priority="0" />
+      <Item value="public" priority="2" />
+      <Item value="Id" priority="1" />
+      <Item value="AstTree`0" priority="1" />
+      <Item value="return" priority="4" />
+      <Item value="this" priority="1" />
+      <Item value="Argument" priority="1" />
+      <Item value="IOperation`0" priority="3" />
+      <Item value="Body" priority="0" />
+      <Item value="INode`0" priority="0" />
+      <Item value="new" priority="0" />
+      <Item value="List&lt;INode&gt;" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Shion.JsContext">
+      <Item value="Set`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.File">
+      <Item value="ReadAllText`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Shion.Ast.AstTree">
+      <Item value="Factory`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Shion.Context">
+      <Item value="FunctionSet" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Shion.Ast.IOperation">
+      <Item value="Invoke`0" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Shion.Ast.Identifier">
+      <Item value="Id" priority="1" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:MemberExpression.cs" caret="113" fromTop="0" />
+      <File id="CB511498-1D48-494D-93B1-CB8C5995AB37/d:Sputnik/d:sputnik-v1/d:tests/d:Conformance/d:11_Expressions/d:11.1_Primary_Expressions/d:11.1.1_The_this_Keyword/f:S11.1.1_A1.js" caret="302" fromTop="8" />
+      <File id="CB511498-1D48-494D-93B1-CB8C5995AB37/d:Sputnik/d:sputnik-v1/d:tests/d:Conformance/d:11_Expressions/d:11.1_Primary_Expressions/d:11.1.1_The_this_Keyword/f:S11.1.1_A2.js" caret="162" fromTop="4" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:ExpressionStatement.cs" caret="645" fromTop="17" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:Identifier.cs" caret="811" fromTop="15" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:CallExpression.cs" caret="1083" fromTop="21" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:BlockStatement.cs" caret="754" fromTop="30" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:ReturnStatement.cs" caret="447" fromTop="17" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/f:JsContext.cs" caret="460" fromTop="14" />
+      <File id="CB511498-1D48-494D-93B1-CB8C5995AB37/f:JsContextTest.cs" caret="1725" fromTop="25" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:AstTree.cs" caret="706" fromTop="24" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:Program.cs" caret="490" fromTop="20" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:FunctionDeclaration.cs" caret="551" fromTop="12" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/f:JsContext.cs" caret="1079" fromTop="16" />
+      <File id="CB511498-1D48-494D-93B1-CB8C5995AB37/f:JsContextTest.cs" caret="1192" fromTop="14" />
+      <File id="CB511498-1D48-494D-93B1-CB8C5995AB37/f:JsContextTest.cs" caret="1562" fromTop="20" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:Identifier.cs" caret="140" fromTop="5" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:Identifier.cs" caret="44" fromTop="3" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:Program.cs" caret="79" fromTop="7" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:Program.cs" caret="79" fromTop="2" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:Program.cs" caret="210" fromTop="7" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:Program.cs" caret="79" fromTop="4" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:FunctionDeclaration.cs" caret="76" fromTop="7" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:FunctionDeclaration.cs" caret="74" fromTop="7" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:FunctionDeclaration.cs" caret="74" fromTop="3" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:Identifier.cs" caret="682" fromTop="11" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:Identifier.cs" caret="811" fromTop="19" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:Identifier.cs" caret="811" fromTop="15" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:CallExpression.cs" caret="991" fromTop="20" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:BlockStatement.cs" caret="563" fromTop="24" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:BlockStatement.cs" caret="754" fromTop="30" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:ReturnStatement.cs" caret="447" fromTop="17" />
+      <File id="CB511498-1D48-494D-93B1-CB8C5995AB37/f:JsContextTest.cs" caret="1813" fromTop="27" />
+      <File id="CB511498-1D48-494D-93B1-CB8C5995AB37/f:JsContextTest.cs" caret="1704" fromTop="23" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:FunctionDeclaration.cs" caret="719" fromTop="15" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:FunctionDeclaration.cs" caret="496" fromTop="14" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:FunctionDeclaration.cs" caret="539" fromTop="14" />
+      <File id="F88372E1-0E51-45A5-BBA7-F00FBD8CA30F/d:Ast/f:FunctionDeclaration.cs" caret="398" fromTop="12" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+</Configuration>

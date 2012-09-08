@@ -25,12 +25,15 @@ namespace Shion.Ast
         public dynamic Invoke(Context context)
         {
             object val = null;
+            if (context.Arguments.ContainsKey(Id))
+            {
+                val = context.Arguments[Id];
+            }
             if (context.VarSet.ContainsKey(Id))
             {
                 val = context.VarSet[Id];
             }
-
-            if (context.ThisSet.ContainsKey(Id))
+            else if (context.ThisSet.ContainsKey(Id))
             {
                 val = context.ThisSet[Id];
             }

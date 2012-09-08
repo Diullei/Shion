@@ -96,6 +96,7 @@ namespace Shion
         {
             public static string AssignmentExpression { get { return "AssignmentExpression"; } }
             public static string ArrayExpression { get { return "ArrayExpression"; } }
+            public static string ArrayPattern { get { return "ArrayPattern"; } }
             public static string BlockStatement { get { return "BlockStatement"; } }
             public static string BinaryExpression { get { return "BinaryExpression"; } }
             public static string BreakStatement { get { return "BreakStatement"; } }
@@ -105,7 +106,7 @@ namespace Shion
             public static string ContinueStatement { get { return "ContinueStatement"; } }
             public static string DoWhileStatement { get { return "DoWhileStatement"; } }
             public static string DebuggerStatement { get { return "DebuggerStatement"; } }
-            public static string EmptyStatement { get { return "EmptyStatement"; } }
+            public static string EmptyStatement     { get { return "EmptyStatement"; } }
             public static string ExpressionStatement { get { return "ExpressionStatement"; } }
             public static string ForStatement { get { return "ForStatement"; } }
             public static string ForInStatement { get { return "ForInStatement"; } }
@@ -119,6 +120,7 @@ namespace Shion
             public static string MemberExpression { get { return "MemberExpression"; } }
             public static string NewExpression { get { return "NewExpression"; } }
             public static string ObjectExpression { get { return "ObjectExpression"; } }
+            public static string ObjectPattern { get { return "ObjectPattern"; } }
             public static string Program { get { return "Program"; } }
             public static string Property { get { return "Property"; } }
             public static string ReturnStatement { get { return "ReturnStatement"; } }
@@ -847,7 +849,7 @@ namespace Shion
             if (ch != '.')
             {
                 number = NextChar().ToString();
-                ch = _source[_index];
+                ch = (_index < _source.Count ? _source[_index] : '\0');// _source[_index];
 
                 // Hex number starts with '0x'.
                 // Octal number starts with '0'.
@@ -2396,8 +2398,62 @@ namespace Shion
             return expr;
         }
 
-        // 11.13 Assignment Operators
+        public dynamic ReinterpretAsAssignmentBindingPattern(dynamic expr)
+        {
+            var i = 0;
+            var len = 0; //, property, element;
+            dynamic property = null;
+            dynamic element = null;
 
+            if (expr.@sealed)
+            {
+                ThrowError(null, Messages.InvalidLHSInAssignment);
+            }
+
+            if (expr.type == Syntax.ObjectExpression)
+            {
+                expr.type = Syntax.ObjectPattern;
+                for (i = 0, len = expr.properties.length; i < len; i += 1)
+                {
+                    property = expr.properties[i];
+                    if (property.kind != "init")
+                    {
+                        ThrowError(null, Messages.InvalidLHSInAssignment);
+                    }
+                    ReinterpretAsAssignmentBindingPattern(property.value);
+                }
+            }
+            else if (expr.type == Syntax.ArrayExpression)
+            {
+                expr.type = Syntax.ArrayPattern;
+                for (i = 0, len = expr.elements.length; i < len; i += 1)
+                {
+                    element = expr.elements[i];
+                    if (element)
+                    {
+                        ReinterpretAsAssignmentBindingPattern(element);
+                    }
+                }
+            }
+            else if (expr.type == Syntax.Identifier)
+            {
+                if (expr.name == "super")
+                {
+                    ThrowError(null, Messages.InvalidLHSInAssignment);
+                }
+            }
+            else
+            {
+                if (expr.type != Syntax.MemberExpression && expr.type != Syntax.CallExpression && expr.type != Syntax.NewExpression)
+                {
+                    ThrowError(null, Messages.InvalidLHSInAssignment);
+                }
+            }
+
+            return null;
+        }
+
+        // 11.13 Assignment Operators
         private dynamic ParseAssignmentExpression()
         {
 
@@ -2415,6 +2471,12 @@ namespace Shion
                 if (_strict && expr.Type == Syntax.Identifier && IsRestrictedWord(expr.Name))
                 {
                     ThrowError(null, Messages.StrictLHSAssignment);
+                }
+
+                // ES.next draf 11.13 Runtime Semantics step 1
+                if (expr.type == Syntax.ObjectExpression || expr.type == Syntax.ArrayExpression)
+                {
+                    ReinterpretAsAssignmentBindingPattern(expr);
                 }
 
                 expr = new

@@ -24,7 +24,7 @@ namespace Shion.Ast
             return this;
         }
 
-        public dynamic Invoke(Context context)
+        public dynamic Invoke(Scope context)
         {
             if (Callee is MemberExpression)
             {

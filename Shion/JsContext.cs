@@ -6,7 +6,7 @@ namespace Shion
     public class JsContext
     {
         private readonly Dictionary<string, IOperation> _cache = new Dictionary<string, IOperation>();
-        readonly Context _context = new Context();
+        readonly Scope _context = new Scope();
 
         public object Run(string code)
         {

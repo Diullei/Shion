@@ -15,7 +15,7 @@ namespace Shion
             Arguments = arguments;
         }
 
-        public object Invoke(Context context)
+        public object Invoke(Scope context)
         {
             var index = 0;
             Arguments.ForEach(a =>

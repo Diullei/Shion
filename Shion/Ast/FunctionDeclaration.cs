@@ -24,7 +24,7 @@ namespace Shion.Ast
             return this;
         }
 
-        public dynamic Invoke(Context context)
+        public dynamic Invoke(Scope context)
         {
             //Params.ForEach(p => { context.ArgSet[((Identifier) p).Id] = null; });
             context.FunctionSet[((Identifier)Id).Id] = new FunctionDef { Body = Body, Params = Params };

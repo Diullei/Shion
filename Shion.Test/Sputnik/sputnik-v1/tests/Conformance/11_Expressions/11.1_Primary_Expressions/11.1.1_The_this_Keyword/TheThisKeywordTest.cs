@@ -14,6 +14,7 @@ namespace Shion.Test.Sputnik.v1._11_Expressions._11_1_Primary_Expressions._11_1_
         [TestCase(TestPath + @"S11.1.1_A1.js", ExpectedException = typeof(Exception), ExpectedMessage = "Invalid left-hand side in assignment")]
         [TestCase(TestPath + @"S11.1.1_A2.js")]
         [TestCase(TestPath + @"S11.1.1_A3.1.js")]
+        [TestCase(TestPath + @"S11.1.1_A3.2.js")]
         public void Test(string file)
         {
             RunTest(file);

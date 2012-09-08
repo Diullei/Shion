@@ -40,7 +40,7 @@ namespace Shion.Ast
 
         }
 
-        public dynamic Invoke(Context context)
+        public dynamic Invoke(Scope context)
         {
             object result = null;
             Declarations.ForEach(op =>

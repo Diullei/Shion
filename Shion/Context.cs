@@ -2,9 +2,9 @@
 
 namespace Shion
 {
-    public class Context
+    public class Scope
     {
-        public Context()
+        public Scope()
         {
             Arguments = new Dictionary<string, object>();
             VarSet = new Dictionary<string, object>();

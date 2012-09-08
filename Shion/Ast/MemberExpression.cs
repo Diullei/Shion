@@ -20,7 +20,7 @@ namespace Shion.Ast
             return this;
         }
 
-        public dynamic Invoke(Context context)
+        public dynamic Invoke(Scope context)
         {
             var obj = ((IOperation)Object).Invoke(context);
             var args = new List<object>();
@@ -30,7 +30,7 @@ namespace Shion.Ast
             }
             var prop = ((Identifier)Property).Id;
 
-            if (obj is Context)
+            if (obj is Scope)
             {
                 if (prop == "toString")
                     return "[object Object]";

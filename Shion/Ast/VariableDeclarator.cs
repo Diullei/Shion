@@ -28,7 +28,7 @@ namespace Shion.Ast
 
         }
 
-        public dynamic Invoke(Context context)
+        public dynamic Invoke(Scope context)
         {
             var init = ((IOperation)Init).Invoke(context);
             context.VarSet.Add(((Identifier)Id).Id, init);

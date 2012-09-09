@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace Shion.Ast
 {
@@ -11,7 +12,13 @@ namespace Shion.Ast
         public INode New(dynamic node)
         {
             Id = AstTree.Factory(node.Id);
-            Init = AstTree.Factory(node.Init);
+            try
+            {
+                Init = AstTree.Factory(node.Init);
+            }
+            catch (Exception)
+            {
+            }
 
             return this;
         }
@@ -21,17 +28,21 @@ namespace Shion.Ast
             var sb = new StringBuilder();
 
             sb.Append(Id.ToString());
-            sb.Append(" = ");
-            sb.Append(Init.ToString());
+            if (Init != null)
+            {
+                sb.Append(" = ");
+                sb.Append(Init.ToString());
+            }
 
             return sb.ToString();
-
         }
 
         public dynamic Invoke(Scope scope)
         {
-            var init = ((IOperation)Init).Invoke(scope);
-            scope.VarSet.Add(((Identifier)Id).Id, init);
+            dynamic init = null;
+            init = Init != null ? ((IOperation)Init).Invoke(scope) : new Identifier {Id = "null"};
+
+            scope.SetVar(((Identifier) Id).Id, init);
             return init;
         }
     }

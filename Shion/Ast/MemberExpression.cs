@@ -13,9 +13,15 @@ namespace Shion.Ast
 
         public INode New(dynamic node)
         {
+            Arguments = new List<INode>();
+
             Computed = node.Computed;
             Object = AstTree.Factory(node.Object);
             Property = AstTree.Factory(node.Property);
+            if (Property is Identifier)
+            {
+                ((Identifier) Property).IsMember = true;
+            }
 
             return this;
         }
@@ -30,14 +36,33 @@ namespace Shion.Ast
             }
             var prop = ((Identifier)Property).Id;
 
+            var isNative = false;
+            var result = Native.GetIfIsNative(obj, prop, ref isNative);
+            if (isNative)
+                return result;
+
             if (obj is Scope)
             {
-                if (prop == "toString")
-                    return "[object Object]";
-                throw new Exception();
+                //var thisSet = ((Scope)obj).ThisSet;
+                //return thisSet.ContainsKey(prop) ? thisSet[prop] : new Undefined();
+                return ((Scope) obj).GetThisValue(prop);
             }
             else
-                return obj.GetType().GetMethod(prop).Invoke(obj, args.ToArray());
+            {
+                if (obj is Native)
+                {
+                    ((Native)obj).SetCurrentScope(scope);
+                }
+
+                try
+                {
+                    return obj.GetType().GetMethod(prop).Invoke(obj, args.ToArray());
+                }
+                catch (Exception ex)
+                {
+                    throw ex.InnerException;
+                }
+            }
         }
     }
 }

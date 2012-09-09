@@ -29,7 +29,7 @@ namespace Shion.Ast
 
         public dynamic Invoke(Scope context)
         {
-            object result = null;
+            object result = new Undefined();
             Body.ForEach(line =>
             {
                 result = ((IOperation)line).Invoke(context);

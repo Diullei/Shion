@@ -8,6 +8,7 @@
  * @description: Create function. It have property, that returned "this";
 */
 
+
 //CHECK#1
 function MyFunction() {this.THIS = this}
 if ((new MyFunction()).THIS.toString() !== "[object Object]") {

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace Shion.Ast
 {
@@ -6,6 +7,8 @@ namespace Shion.Ast
     public class Identifier : INode, IOperation
     {
         public string Id { get; set; }
+
+        public bool IsMember { get; set; }
 
         public INode New(dynamic node)
         {
@@ -24,21 +27,12 @@ namespace Shion.Ast
 
         public dynamic Invoke(Scope scope)
         {
-            object val = null;
-            if (scope.Arguments.ContainsKey(Id))
-            {
-                val = scope.Arguments[Id];
-            }
-            if (scope.VarSet.ContainsKey(Id))
-            {
-                val = scope.VarSet[Id];
-            }
-            else if (scope.ThisSet.ContainsKey(Id))
-            {
-                val = scope.ThisSet[Id];
-            }
+            if(Id == "undefined")
+                return new Undefined();
+            else if (Id == "null")
+                return new Null();
 
-            return Util.GetValue(val);
+            return scope.Get(Id, IsMember);
         }
     }
 }

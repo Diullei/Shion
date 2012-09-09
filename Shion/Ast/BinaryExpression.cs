@@ -70,6 +70,10 @@ namespace Shion.Ast
                     return ((IOperation)Left).Invoke(scope) | ((IOperation)Right).Invoke(scope);
                 case "||":
                     return ((IOperation)Left).Invoke(scope) || ((IOperation)Right).Invoke(scope);
+                case ">>":
+                    return ((IOperation)Left).Invoke(scope) >> ((IOperation)Right).Invoke(scope);
+                case "<<":
+                    return ((IOperation)Left).Invoke(scope) << ((IOperation)Right).Invoke(scope);
                 default:
                     throw new Exception("Invalid Oprator: " + Operator);
             }

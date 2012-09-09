@@ -390,10 +390,11 @@ namespace Shion
                     if (IsLineTerminator(ch))
                     {
                         lineComment = false;
-                        if (ch == '\r' && _source[_index] == '\n')
-                        {
-                            ++_index;
-                        }
+                        if(_index > _source.Count)
+                            if (ch == '\r' && _source[_index] == '\n')
+                            {
+                                ++_index;
+                            }
                         ++_lineNumber;
                         _lineStart = _index;
                     }
@@ -461,10 +462,11 @@ namespace Shion
                 else if (IsLineTerminator(ch))
                 {
                     ++_index;
-                    if (ch == '\r' && _source[_index] == '\n')
-                    {
-                        ++_index;
-                    }
+                    if (_index < _source.Count)
+                        if (ch == '\r' && _source[_index] == '\n')
+                        {
+                            ++_index;
+                        }
                     ++_lineNumber;
                     _lineStart = _index;
                 }
@@ -2410,9 +2412,9 @@ namespace Shion
                 ThrowError(null, Messages.InvalidLHSInAssignment);
             }
 
-            if (expr.type == Syntax.ObjectExpression)
+            if (expr.Type == Syntax.ObjectExpression)
             {
-                expr.type = Syntax.ObjectPattern;
+                expr.Type = Syntax.ObjectPattern;
                 for (i = 0, len = expr.properties.length; i < len; i += 1)
                 {
                     property = expr.properties[i];
@@ -2423,9 +2425,9 @@ namespace Shion
                     ReinterpretAsAssignmentBindingPattern(property.value);
                 }
             }
-            else if (expr.type == Syntax.ArrayExpression)
+            else if (expr.Type == Syntax.ArrayExpression)
             {
-                expr.type = Syntax.ArrayPattern;
+                expr.Type = Syntax.ArrayPattern;
                 for (i = 0, len = expr.elements.length; i < len; i += 1)
                 {
                     element = expr.elements[i];
@@ -2435,7 +2437,7 @@ namespace Shion
                     }
                 }
             }
-            else if (expr.type == Syntax.Identifier)
+            else if (expr.Type == Syntax.Identifier)
             {
                 if (expr.name == "super")
                 {
@@ -2444,7 +2446,7 @@ namespace Shion
             }
             else
             {
-                if (expr.type != Syntax.MemberExpression && expr.type != Syntax.CallExpression && expr.type != Syntax.NewExpression)
+                if (expr.Type != Syntax.MemberExpression && expr.Type != Syntax.CallExpression && expr.Type != Syntax.NewExpression)
                 {
                     ThrowError(null, Messages.InvalidLHSInAssignment);
                 }
@@ -2474,7 +2476,7 @@ namespace Shion
                 }
 
                 // ES.next draf 11.13 Runtime Semantics step 1
-                if (expr.type == Syntax.ObjectExpression || expr.type == Syntax.ArrayExpression)
+                if (expr.Type == Syntax.ObjectExpression || expr.Type == Syntax.ArrayExpression)
                 {
                     ReinterpretAsAssignmentBindingPattern(expr);
                 }
@@ -2683,7 +2685,7 @@ namespace Shion
             return new
             {
                 Type = Syntax.ExpressionStatement,
-                Expr = expr
+                Expression = expr
             };
         }
 
@@ -4229,16 +4231,8 @@ namespace Shion
 
         public dynamic Parse(string code, ParserOptions options)
         {
-            //var program, toString;
-
-            //toString = String;
-            //if (typeof code !== 'string' && !(code instanceof String)) {
-            //    code = toString(code);
-            //}
             dynamic program = null;
 
-            //char[] source = null;
-            var index = 0;
             _lineNumber = (code.Length > 0) ? 1 : 0;
             _lineStart = 0;
             _length = code.Length;
@@ -4253,74 +4247,12 @@ namespace Shion
                 InSwitch = false
             };
 
-            _extra = new Extra();
-            //if (options != null) {
-            //    _extra.Range = options.Range;
-            //    _extra.Loc = options.Loc;
-            //    _extra.Raw = options.Raw;
-
-            //    if (options.Tokens)
-            //    {
-            //        _extra.Tokens = new List<Token>();
-            //    }
-            //    if (options.Comment) {
-            //        _extra.Comments = new List<string>();
-            //    }
-            //    if (options.Tolerant)
-            //    {
-            //        _extra.Errors = new List<Exception>();
-            //    }
-            //}
-
             if (_length > 0)
             {
                 _source = StringToArray(code).ToList();
-                //if (typeof source[0] === 'undefined') {
-                //    // Try first to convert to a string. This is good as fast path
-                //    // for old IE which understands string indexing for string
-                //    // literals only and not for string object.
-                //    if (code instanceof String) {
-                //        source = code.valueOf();
-                //    }
-
-                //    // Force accessing the characters via an array.
-                //    if (typeof source[0] === 'undefined') {
-                //        source = stringToArray(code);
-                //    }
-                //}
             }
 
-            //patch();
-            try
-            {
-                program = ParseProgram();
-                //if (_extra.Comments != null)
-                //{
-                //    FilterCommentLocation();
-                //    program.Comments = _extra.Comments;
-                //}
-                //if (_extra.Tokens != null)
-                //{
-                //    FilterTokenLocation();
-                //    program.Tokens = _extra.Tokens;
-                //}
-                //if (_extra.Errors != null)
-                //{
-                //    program.Errors = _extra.Errors;
-                //}
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-                //unpatch();
-                _extra = new Extra();
-            }
-
-            //return program;
-            return program;
+            return ParseProgram();
         }
     }
 }

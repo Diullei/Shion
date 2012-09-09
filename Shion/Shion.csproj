@@ -40,13 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ast\AssignmentExpression.cs" />
     <Compile Include="Ast\AstTree.cs" />
     <Compile Include="Ast\AstTypeAttribute.cs" />
     <Compile Include="Ast\BinaryExpression.cs" />
     <Compile Include="Ast\BlockStatement.cs" />
     <Compile Include="Ast\CallExpression.cs" />
+    <Compile Include="Ast\EmptyStatement.cs" />
     <Compile Include="Ast\ExpressionStatement.cs" />
     <Compile Include="Ast\FunctionDeclaration.cs" />
+    <Compile Include="Ast\FunctionExpression.cs" />
     <Compile Include="Ast\Identifier.cs" />
     <Compile Include="Ast\IfStatement.cs" />
     <Compile Include="Ast\INode.cs" />
@@ -55,12 +58,20 @@
     </Compile>
     <Compile Include="Ast\Literal.cs" />
     <Compile Include="Ast\MemberExpression.cs" />
+    <Compile Include="Ast\NaN.cs" />
+    <Compile Include="Ast\NewExpression.cs" />
+    <Compile Include="Ast\Null.cs" />
     <Compile Include="Ast\Program.cs" />
+    <Compile Include="Ast\ReferenceError.cs" />
     <Compile Include="Ast\ReturnStatement.cs" />
+    <Compile Include="Ast\SyntaxError.cs" />
     <Compile Include="Ast\ThisExpression.cs" />
     <Compile Include="Ast\TypeExtensions.cs" />
+    <Compile Include="Ast\Undefined.cs" />
+    <Compile Include="Ast\UpdateExpression.cs" />
     <Compile Include="Ast\VariableDeclaration.cs" />
     <Compile Include="Ast\VariableDeclarator.cs" />
+    <Compile Include="Native.cs" />
     <Compile Include="Scope.cs" />
     <Compile Include="FunctionDef.cs" />
     <Compile Include="JsContext.cs" />

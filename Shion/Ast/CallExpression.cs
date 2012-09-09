@@ -30,13 +30,18 @@ namespace Shion.Ast
             {
                 (Callee as MemberExpression).Arguments = Arguments;
                 return (Callee as MemberExpression).Invoke(scope);
-            } 
-            else if(Callee is Identifier)
-            {
-                if (((Identifier)Callee).Id == "toString")
-                    return "[object Object]";
+            }
 
-                var fn = (FunctionDef)scope.FunctionSet[((Identifier) Callee).Id];
+            var isNative = false;
+            var result = Native.GetIfIsNative(Callee, null, ref isNative);
+            if (isNative)
+                return result;
+ 
+            if(Callee is Identifier)
+            {
+                var id = ((Identifier) Callee).Id;
+                FunctionDef fn = scope.Get(id);
+
                 fn.SetArgs(Arguments);
                 return fn.Invoke(scope);
             }

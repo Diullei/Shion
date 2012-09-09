@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using NUnit.Framework;
+using Shion.Ast;
 
 namespace Shion.Test
 {
@@ -12,9 +13,8 @@ namespace Shion.Test
         public void Setup()
         {
             Context = new JsContext();
-            Context.Set("___testUtil", new TestUtil(Context));
+            Context.Set("___testUtil", new TestUtil());
             Context.Run("function $ERROR(message){ return ___testUtil.ThrowError(message); }");
-            Context.Run("function eval(code){ return ___testUtil.Eval(code); }");
         }
 
         protected void RunTest(string file)
@@ -23,15 +23,23 @@ namespace Shion.Test
             {
                 Context.Run(File.ReadAllText(file));
             }
-            catch (Exception ex)
+            catch (SyntaxError ex)
             {
                 var message = ex.Message;
                 if (message.StartsWith("Line "))
                 {
-                    throw new Exception(message.Substring(message.IndexOf(':') + 1).Trim());
+                    throw new SyntaxError(message.Substring(message.IndexOf(':') + 1).Trim());
                 }
-                else
-                    throw;
+                throw;
+            }
+            catch (ReferenceError ex)
+            {
+                var message = ex.Message;
+                if (message.StartsWith("Line "))
+                {
+                    throw new ReferenceError(message.Substring(message.IndexOf(':') + 1).Trim());
+                }
+                throw;
             }
         }
     }

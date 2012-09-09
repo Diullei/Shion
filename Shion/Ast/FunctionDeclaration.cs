@@ -14,7 +14,15 @@ namespace Shion.Ast
         {
             Params = new List<INode>();
 
-            Id = AstTree.Factory(node.Id);
+            try
+            {
+                Id = AstTree.Factory(node.Id);
+            }
+            catch (Exception)
+            {
+                Id = new Identifier() { Id = "<anonymous>" };
+            }
+
             Body = AstTree.Factory(node.Body);
             for (var j = 0; j < node.Params.Count; j++)
             {
@@ -27,8 +35,9 @@ namespace Shion.Ast
         public dynamic Invoke(Scope scope)
         {
             //Params.ForEach(p => { context.ArgSet[((Identifier) p).Id] = null; });
-            scope.FunctionSet[((Identifier)Id).Id] = new FunctionDef { Body = Body, Params = Params };
-            return null;
+            var function = new FunctionDef { Body = Body, Params = Params };
+            scope.SetFunction(((Identifier)Id).Id, function);
+            return function;
         }
     }
 }

@@ -26,8 +26,8 @@ namespace Shion.Ast
             {
                 return ((IOperation) Consequent).Invoke(scope);
             }
-            
-            return Alternate != null ? ((IOperation)Alternate).Invoke(scope) : null;
+
+            return Alternate != null ? ((IOperation)Alternate).Invoke(scope) : new Undefined();
         }
     }
 }
